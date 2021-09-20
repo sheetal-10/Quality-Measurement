@@ -12,7 +12,8 @@ public class QuantityTest {
         Feet feet2 = new Feet (0.0);
         Assert.assertEquals(feet1, feet2);
     }
-
+    
+    //testcase for null check
     @Test
     public void given0FeetAndNullFeet_ShouldReturnNotEqual() {
         Feet feet1 = new Feet (0.0);
