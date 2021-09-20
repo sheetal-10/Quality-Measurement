@@ -28,4 +28,12 @@ public class QuantityTest {
         Feet feet2 = new Feet (1.0);
         Assert.assertNotEquals(feet1, feet2);
     }
+
+    //testcase for 0 inch and 0 inch should return true
+    @Test
+    public void given0Inchand0Inch_ShouldReturnEqual() {
+        Inch inch1 = new Inch (0.0);
+        Inch inch2 = new Inch (0.0);
+        Assert.assertEquals(inch1, inch2);
+    }
 }
