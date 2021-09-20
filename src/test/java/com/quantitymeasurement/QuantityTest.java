@@ -45,4 +45,11 @@ public class QuantityTest {
         Assert.assertNotEquals(inch1, inch2);
     }
 
+    //testcase for 0 inch and 1 inch equality check
+    @Test
+    public void given0Inchand1Inch_ShouldReturnNotEqual() {
+        Inch inch1 = new Inch (0.0);
+        Inch inch2 = new Inch (1.0);
+        Assert.assertNotEquals(inch1, inch2);
+    }
 }
