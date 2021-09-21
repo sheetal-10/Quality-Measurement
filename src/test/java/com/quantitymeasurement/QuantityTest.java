@@ -34,6 +34,21 @@ public class QuantityTest {
     }
 
     @Test
+    public void givenFeetFromDifferentRefFeet_ShouldReturnFalse() {
+        Feet feet1 = new Feet(0.0);
+        Feet feet2 = new Feet(0.0);
+        boolean result = feet2 == feet1;
+        Assert.assertFalse(result);
+    }
+
+    @Test
+    public void givenFeetFromSameRef_ShouldReturnTrue() {
+        Feet feet = new Feet(0.0);
+        boolean result = feet == feet;
+        Assert.assertTrue(result);
+    }
+
+    @Test
     public void given0Inchand0Inch_ShouldReturnEqual() {
         Inch inch1 = new Inch(0.0);
         Inch inch2 = new Inch(0.0);
