@@ -75,4 +75,20 @@ public class QuantityTest {
         Inch inch2 = new Inch(1.0);
         Assert.assertEquals(inch1.getClass(), inch2.getClass());
     }
+
+    @Test
+    public void givenInchFromSameRef_ShouldReturnTrue() {
+        Inch inch = new Inch(1.0);
+        boolean result = inch == inch;
+        Assert.assertTrue(result);
+    }
+
+    @Test
+    public void givenInchFromDiffRef_ShouldReturnFalse() {
+        Inch inch1 = new Inch(1.0);
+        Inch inch2 = new Inch(1.0);
+        boolean result = inch1 == inch2;
+        Assert.assertFalse(result);
+
+    }
 }
