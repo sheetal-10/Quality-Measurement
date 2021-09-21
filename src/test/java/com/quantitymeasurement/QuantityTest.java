@@ -130,4 +130,12 @@ public class QuantityTest {
         double expectedResult = 1;
         Assertions.assertNotEquals(actualResult, expectedResult);
     }
+
+    @Test
+    public void given1Yardand36Inch_WhenCompared_ShouldReturnEqual() {
+        Yard yard = new Yard(1.0);
+        double actualResult = yard.yardToInchConversion();
+        double expectedResult = 36;
+        Assertions.assertEquals(actualResult, expectedResult);
+    }
 }
