@@ -51,13 +51,13 @@ public class QuantityTest {
     @Test
     public void given0Inchand0Inch_ShouldReturnEqual() {
         Length inch1 = new Length(Length.Unit.Inch, 0.0);
-        Length inch2 = new Length(Length.Unit.Inch,0.0);
+        Length inch2 = new Length(Length.Unit.Inch, 0.0);
         Assertions.assertEquals(inch1, inch2);
     }
 
     @Test
     public void given0InchAndNullInch_ShouldReturnNotEqual() {
-        Length inch1 = new Length(Length.Unit.Inch,0.0);
+        Length inch1 = new Length(Length.Unit.Inch, 0.0);
         Length inch2 = null;
         Assertions.assertNotEquals(inch1, inch2);
     }
@@ -72,7 +72,7 @@ public class QuantityTest {
     @Test
     public void givenType0Inchand1Inch_ShouldReturnEqual() {
         Length inch1 = new Length(Length.Unit.Inch, 0.0);
-        Length inch2 = new Length(Length.Unit.Inch,1.0);
+        Length inch2 = new Length(Length.Unit.Inch, 1.0);
         Assertions.assertEquals(inch1.getClass(), inch2.getClass());
     }
 
@@ -86,15 +86,15 @@ public class QuantityTest {
     @Test
     public void givenInchFromDiffRef_ShouldReturnFalse() {
         Length inch1 = new Length(Length.Unit.Inch, 1.0);
-        Length inch2 = new Length(Length.Unit.Inch,1.0);
+        Length inch2 = new Length(Length.Unit.Inch, 1.0);
         boolean result = inch1 == inch2;
         Assertions.assertFalse(result);
     }
 
     @Test
-    public void given1Feetand1Inch_ShouldReturnNotEqual(){
-        Length feet1 = new Length(Length.Unit.Feet,0.0);
-        Length inch1 = new Length(Length.Unit.Inch,0.0);
+    public void given1Feetand1Inch_ShouldReturnNotEqual() {
+        Length feet1 = new Length(Length.Unit.Feet, 0.0);
+        Length inch1 = new Length(Length.Unit.Inch, 0.0);
         Assertions.assertNotEquals(feet1, inch1);
     }
 
