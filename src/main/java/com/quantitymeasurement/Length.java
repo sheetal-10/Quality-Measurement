@@ -6,6 +6,8 @@ public class Length {
     enum Unit{Feet, Inch, Yard};
 
     private static final double FEET_TO_INCH = 12;
+    private static final double YARD_TO_FEET = 3 ;
+    private static final double YARD_TO_INCH = 36;
 
     private final double value;
     private final Unit unit;
@@ -30,6 +32,14 @@ public class Length {
             return Double.compare(this.value, that.value * FEET_TO_INCH) == 0;
         if (this.unit.equals(Unit.Yard) && that.unit.equals(Unit.Yard))
             return Double.compare(this.value, that.value) == 0;
+        if (this.unit.equals(Unit.Feet) && that.unit.equals(Unit.Yard))
+            return Double.compare(this.value, that.value * YARD_TO_FEET) == 0;
+        if (this.unit.equals(Unit.Yard) && that.unit.equals(Unit.Feet))
+            return Double.compare(this.value * YARD_TO_FEET, that.value) == 0;
+        if (this.unit.equals(Unit.Inch) && that.unit.equals(Unit.Yard))
+            return Double.compare(this.value, that.value * YARD_TO_INCH) == 0;
+        if (this.unit.equals(Unit.Yard) && that.unit.equals(Unit.Inch))
+            return Double.compare(this.value * YARD_TO_INCH, that.value) == 0;
         return false;
     }
 
