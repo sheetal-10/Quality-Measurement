@@ -13,6 +13,11 @@ public class Length {
         this.unit = unit;
     }
 
+    public double feetToInchConversion(){
+        return value * 12;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
