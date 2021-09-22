@@ -46,6 +46,19 @@ public class Length {
         return false;
     }
 
+    public Length sumOfLength(Length that) {
+        double sum = 0.0;
+        if (this.unit.equals(Unit.Inch) && that.unit.equals(Unit.Inch))
+            sum = this.value + that.value;
+        else if (this.unit.equals(Unit.Feet) && that.unit.equals(Unit.Inch))
+            sum = this.value * FEET_TO_INCH + that.value;
+        else if (this.unit.equals(Unit.Feet) && that.unit.equals(Unit.Feet))
+            sum = this.value * FEET_TO_INCH + that.value * FEET_TO_INCH;
+        else if (this.unit.equals(Unit.Inch) && that.unit.equals(Unit.Centimeter))
+            sum = this.value + that.value / INCH_TO_CM;
+        return new Length(Unit.Inch, sum);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

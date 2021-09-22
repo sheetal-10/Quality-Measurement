@@ -256,4 +256,41 @@ public class QuantityTest {
         boolean compareCheck = centimeter1 .compare(inch1);
         Assertions.assertTrue(compareCheck);
     }
+
+    @Test
+    public void given2InchAnd2Inch_WhenAdded_ShouldReturn4Inch() {
+        Length inch1 = new Length(Length.Unit.Inch, 2.0);
+        Length inch2 = new Length(Length.Unit.Inch, 2.0);
+        Length expected = new Length(Length.Unit.Inch, 4.0);
+        Length actual = inch1.sumOfLength(inch2);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void given1FeetAnd2Inch_WhenAdded_ShouldReturn14Inch() {
+        Length feet1 = new Length(Length.Unit.Feet, 1.0);
+        Length inch1 = new Length(Length.Unit.Inch, 2.0);
+        Length expected = new Length(Length.Unit.Inch, 14.0);
+        Length actual = feet1.sumOfLength(inch1);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void given1FeetAnd1Feet_WhenAdded_ShouldReturn24Inch() {
+        Length feet1 = new Length(Length.Unit.Feet, 1.0);
+        Length feet2 = new Length(Length.Unit.Feet, 1.0);
+        Length expected = new Length(Length.Unit.Inch, 24.0);
+        Length actual = feet1.sumOfLength(feet2);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void given2Inch2point5Centimeter_WhenAdded_ShouldReturn3Inch() {
+        Length inch = new Length(Length.Unit.Inch, 2.0);
+        Length centimeter = new Length(Length.Unit.Centimeter, 2.5);
+        Length expected = new Length(Length.Unit.Inch, 3.0);
+        Length actual = inch.sumOfLength(centimeter);
+        Assertions.assertEquals(expected, actual);
+    }
+
 }
