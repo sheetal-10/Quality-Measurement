@@ -3,7 +3,7 @@ package com.quantitymeasurement;
 import java.util.Objects;
 
 public class Length {
-    enum Unit{Feet, Inch};
+    enum Unit{Feet, Inch, Yard};
 
     private static final double FEET_TO_INCH = 12;
 
@@ -28,6 +28,8 @@ public class Length {
             return Double.compare(this.value, that.value) == 0;
         if (this.unit.equals(Unit.Inch) && that.unit.equals(Unit.Feet))
             return Double.compare(this.value, that.value * FEET_TO_INCH) == 0;
+        if (this.unit.equals(Unit.Yard) && that.unit.equals(Unit.Yard))
+            return Double.compare(this.value, that.value) == 0;
         return false;
     }
 
