@@ -5,9 +5,10 @@ import java.util.Objects;
 public class Length {
     enum Unit{Feet, Inch};
 
+    private static final double FEET_TO_INCH = 12;
+
     private final double value;
     private final Unit unit;
-    private double Feet_To_Inch;
 
     public Length(Unit unit, double value) {
         this.value = value;
@@ -22,9 +23,12 @@ public class Length {
         if (this.unit.equals(Unit.Feet) && that.unit.equals(Unit.Feet))
             return Double.compare(this.value, that.value) == 0;
         if (this.unit.equals(Unit.Feet) && that.unit.equals(Unit.Inch))
-            return Double.compare(this.value * Feet_To_Inch, that.value) == 0;
-        else
-            return false;
+            return Double.compare(this.value * FEET_TO_INCH, that.value) == 0;
+        if (this.unit.equals(Unit.Inch) && that.unit.equals(Unit.Inch))
+            return Double.compare(this.value, that.value) == 0;
+        if (this.unit.equals(Unit.Inch) && that.unit.equals(Unit.Feet))
+            return Double.compare(this.value, that.value * FEET_TO_INCH) == 0;
+        return false;
     }
 
     @Override
