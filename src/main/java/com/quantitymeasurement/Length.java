@@ -3,11 +3,12 @@ package com.quantitymeasurement;
 import java.util.Objects;
 
 public class Length {
-    enum Unit{Feet, Inch, Yard};
+    enum Unit{Feet, Inch, Yard, Centimeter};
 
     private static final double FEET_TO_INCH = 12;
     private static final double YARD_TO_FEET = 3 ;
     private static final double YARD_TO_INCH = 36;
+    private static final double INCH_TO_CM = 2.5;
 
     private final double value;
     private final Unit unit;
@@ -15,10 +16,6 @@ public class Length {
     public Length(Unit unit, double value) {
         this.value = value;
         this.unit = unit;
-    }
-
-    public double feetToInchConversion(){
-        return value * 12;
     }
 
     public boolean compare(Length that) {
@@ -40,6 +37,12 @@ public class Length {
             return Double.compare(this.value, that.value * YARD_TO_INCH) == 0;
         if (this.unit.equals(Unit.Yard) && that.unit.equals(Unit.Inch))
             return Double.compare(this.value * YARD_TO_INCH, that.value) == 0;
+        if (this.unit.equals(Unit.Centimeter) && that.unit.equals(Unit.Centimeter))
+            return Double.compare(this.value, that.value) == 0;
+        if (this.unit.equals(Unit.Inch) && that.unit.equals(Unit.Centimeter))
+            return Double.compare(this.value * INCH_TO_CM, that.value) == 0;
+        if (this.unit.equals(Unit.Centimeter) && that.unit.equals(Unit.Inch))
+            return Double.compare(this.value, that.value * INCH_TO_CM) == 0;
         return false;
     }
 
