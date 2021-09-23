@@ -20,7 +20,6 @@ public class UnitMeasurementSystem {
         return new UnitMeasurementSystem(requiredUnit, sumOfInput);
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

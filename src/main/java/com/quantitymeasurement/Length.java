@@ -6,8 +6,7 @@ public enum Length implements MeasurementUnits {
     Feet(12.0), Inch(1.0), Yard(36.0), Centimeter(0.4);
 
     public final double conversionValue;
-
-
+    
     Length(double conversionValue) {
         this.conversionValue = conversionValue;
     }
