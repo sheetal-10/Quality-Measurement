@@ -405,4 +405,22 @@ public class QuantityTest {
         Assertions.assertTrue(compareCheck);
     }
 
+    @Test
+    public void given1GallonAnd3point78Litre_WhenAdded_ShouldReturn7point57Liter() {
+        Volume gallon1 = new Volume(Volume.Unit.GALLON, 1.0);
+        Volume litre1 = new Volume(Volume.Unit.LITRE, 3.78);
+        Volume expected = new Volume(Volume.Unit.LITRE, 7.56);
+        Volume actual = gallon1.sumOfVolume(litre1);
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void given1LitreAnd1000MilliLitre_WhenAdded_ShouldReturn2Liter() {
+        Volume litre1 = new Volume(Volume.Unit.LITRE, 1.0);
+        Volume millilitre1 = new Volume(Volume.Unit.MILLILITRE, 1000.0);
+        Volume expected = new Volume(Volume.Unit.LITRE, 2.0);
+        Volume actual = litre1.sumOfVolume(millilitre1);
+        Assertions.assertEquals(expected, actual);
+    }
+
 }

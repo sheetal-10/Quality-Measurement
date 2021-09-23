@@ -30,6 +30,15 @@ public class Volume {
         return false;
     }
 
+    public Volume sumOfVolume(Volume that) {
+        double sum = 0.0;
+        if (this.unit.equals(Unit.GALLON) && that.unit.equals(Unit.LITRE))
+            sum = this.value * GALLON_TO_LITRE + that.value;
+        if (this.unit.equals(Unit.LITRE) && that.unit.equals(Unit.MILLILITRE))
+            sum = this.value + that.value / LITRE_TO_MILLILITRE;
+        return new Volume(Unit.LITRE, sum);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
