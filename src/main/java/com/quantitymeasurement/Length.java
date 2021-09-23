@@ -2,69 +2,22 @@ package com.quantitymeasurement;
 
 import java.util.Objects;
 
-public class Length {
-    enum Unit{Feet, Inch, Yard, Centimeter};
+public enum Length implements MeasurementUnits {
+    Feet(12.0), Inch(1.0), Yard(36.0), Centimeter(0.4);
 
-    private static final double FEET_TO_INCH = 12;
-    private static final double YARD_TO_FEET = 3 ;
-    private static final double YARD_TO_INCH = 36;
-    private static final double INCH_TO_CM = 2.5;
+    public final double conversionValue;
 
-    private final double value;
-    private final Unit unit;
 
-    public Length(Unit unit, double value) {
-        this.value = value;
-        this.unit = unit;
-    }
-
-    public boolean compare(Length that) {
-        if (this.unit.equals(Unit.Feet) && that.unit.equals(Unit.Feet))
-            return Double.compare(this.value, that.value) == 0;
-        if (this.unit.equals(Unit.Feet) && that.unit.equals(Unit.Inch))
-            return Double.compare(this.value * FEET_TO_INCH, that.value) == 0;
-        if (this.unit.equals(Unit.Inch) && that.unit.equals(Unit.Inch))
-            return Double.compare(this.value, that.value) == 0;
-        if (this.unit.equals(Unit.Inch) && that.unit.equals(Unit.Feet))
-            return Double.compare(this.value, that.value * FEET_TO_INCH) == 0;
-        if (this.unit.equals(Unit.Yard) && that.unit.equals(Unit.Yard))
-            return Double.compare(this.value, that.value) == 0;
-        if (this.unit.equals(Unit.Feet) && that.unit.equals(Unit.Yard))
-            return Double.compare(this.value, that.value * YARD_TO_FEET) == 0;
-        if (this.unit.equals(Unit.Yard) && that.unit.equals(Unit.Feet))
-            return Double.compare(this.value * YARD_TO_FEET, that.value) == 0;
-        if (this.unit.equals(Unit.Inch) && that.unit.equals(Unit.Yard))
-            return Double.compare(this.value, that.value * YARD_TO_INCH) == 0;
-        if (this.unit.equals(Unit.Yard) && that.unit.equals(Unit.Inch))
-            return Double.compare(this.value * YARD_TO_INCH, that.value) == 0;
-        if (this.unit.equals(Unit.Centimeter) && that.unit.equals(Unit.Centimeter))
-            return Double.compare(this.value, that.value) == 0;
-        if (this.unit.equals(Unit.Inch) && that.unit.equals(Unit.Centimeter))
-            return Double.compare(this.value * INCH_TO_CM, that.value) == 0;
-        if (this.unit.equals(Unit.Centimeter) && that.unit.equals(Unit.Inch))
-            return Double.compare(this.value, that.value * INCH_TO_CM) == 0;
-        return false;
-    }
-
-    public Length sumOfLength(Length that) {
-        double sum = 0.0;
-        if (this.unit.equals(Unit.Inch) && that.unit.equals(Unit.Inch))
-            sum = this.value + that.value;
-        else if (this.unit.equals(Unit.Feet) && that.unit.equals(Unit.Inch))
-            sum = this.value * FEET_TO_INCH + that.value;
-        else if (this.unit.equals(Unit.Feet) && that.unit.equals(Unit.Feet))
-            sum = this.value * FEET_TO_INCH + that.value * FEET_TO_INCH;
-        else if (this.unit.equals(Unit.Inch) && that.unit.equals(Unit.Centimeter))
-            sum = this.value + that.value / INCH_TO_CM;
-        return new Length(Unit.Inch, sum);
+    Length(double conversionValue) {
+        this.conversionValue = conversionValue;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Length length = (Length) o;
-        return Double.compare(length.value, value) == 0 && unit == length.unit;
+    public double convertToBaseUnit(UnitMeasurementSystem units) {
+        return (units.value * conversionValue);
     }
 
+    public boolean supportAddition() {
+        return true;
+    }
 }
